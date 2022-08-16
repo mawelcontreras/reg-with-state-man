@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content%}
+<div class="content">
+    <div class="card">
+        <div class="card-body">
+        <h4 class="card-title">Step 1</h4>
+        <h2 class="card-subtitle mb-2 text-muted">How would you describe yourself?</h2>
+        <p class="card-text">Response: {{step.step1}}</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+        <h4 class="card-title">Step 2</h4>
+        <h2 class="card-subtitle mb-2 text-muted">What makes you unique?</h2>
+        <p class="card-text">Response: {{step.step2}}</p>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+        <h4 class="card-title">Step 3</h4>
+        <h2 class="card-subtitle mb-2 text-muted">What are you passionate about?</h2>
+        <p class="card-text">Response: {{step.step3}}</p>
+        </div>
+    </div>
+</div>
+{% endblock%}
