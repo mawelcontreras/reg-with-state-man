@@ -17,7 +17,6 @@
         <nav class="navbar navbar-expand-lg bg-light">
             <div class="container-fluid">
               {% if user.is_authenticated %}
-              <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='images/flask-logo.png')}}" alt="" height="50" width="auto"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
@@ -30,7 +29,7 @@
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
-                    <a class="nav-link active" href="/logout"><b>{{ user.firstName }},</b> Log Out</a>
+                    <a class="nav-link active" href="/logout"><b>{{ user.firstName }},</b> Log out</a>
                     {% else %}
                     <a class="nav-link active" href="/login">Login</a>
                     <a class="nav-link active" href="/sign-up">Sign up</a>

@@ -55,17 +55,15 @@ def sign_up():
             db.session.commit()
             login_user(new_user, remember=True)
             flash('Account Created!', category='success')
-            return redirect(url_for('views.home', id=new_user.id))
+            return redirect(url_for('views.home'))
     return render_template("sign_up.html", user=current_user)
 
 @auth.route('/home', methods=['GET'])
 def steps():
     if not current_user.is_authenticated:
         return jsonify({'error': 'user is not logged in'})
-    if 'id' in request.args:
-        print("print testing")
-        print(request.args)
-        id = int(request.args['id'])
+    else:
+        id = int(current_user.get_id())
         step = Steps.query.filter_by(user_id=id).first()
         if step is not None:
             return jsonify({'last_step_taken': step.get_last_step(),
@@ -74,18 +72,15 @@ def steps():
                 'step2': step.step2,
                 'step3': step.step3
             }})
-    else:
-        return jsonify(None)
 
 @auth.route('/home/add', methods=['POST'])
 def add_step():
     if not current_user.is_authenticated:
         return jsonify({'error': 'user is not logged in'})
 
-    dd = request.get_json()
-
-    if 'id' in dd:
-        id = int(dd['id'])
+    else:
+        dd = request.get_json()
+        id = int(current_user.get_id())
         data = str(dd['data'])
 
         step = Steps.query.filter_by(user_id=id).first()
@@ -97,5 +92,3 @@ def add_step():
             db.session.add(step)
             db.session.commit()
             return jsonify({'last_step_taken': step.get_last_step()})
-    else:
-        return jsonify(None)
